@@ -28,12 +28,12 @@ makeCacheMatrix <- function(x = matrix()) {
 ## the inverse from the cache and skips the computation, otherwise, it calculates the inverse of
 ## the matrix and sets the value of inv in the cache for later use
 
-## it assumes that the matrix is always invertible and also a squre matrix
+## it assumes that the matrix x is always invertible and also a squre matrix
 
 cacheSolve <- function(x, ...) {
         ## Return a matrix that is the inverse of 'x'
   inv <-x$getinverse()
-  if(!is.null(inv)){
+  if((!is.null(inv)) && (identical((x$get() %*% inv), diag(nrow(x$get()))))){
     message("getting cached restults")
     return(inv)
   }
