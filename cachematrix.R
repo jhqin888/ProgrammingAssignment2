@@ -6,20 +6,33 @@
 ## 4. get the invers of the matrix
 
 makeCacheMatrix <- function(x = matrix()) {
-  inv<-NULL
-  set <- function(y){
-    x <<- y
-    inv <<- NULL
+  #test if x is a matrix
+  if(!is.matrix(x)){
+    message("Error: x is not a matrix")
+    return
   }
+  else{
+    inv<-NULL
+    set <- function(y){
+      #test if y is a matrix
+      if(!is.matrix(y)){
+        message("Error: the setting object is not a matrix")
+        return
+      }
+      else{
+        x <<- y
+        inv <<- NULL
+      }
+    }
   
-  get <-function() x
+    get <-function() x
   
-  setinverse <- function(inverse) inv <<- inverse
+    setinverse <- function(inverse) inv <<- inverse
   
-  getinverse <- function() inv
+    getinverse <- function() inv
   
-  list(set = set, get = get, setinverse = setinverse, getinverse = getinverse)
-    
+    list(set = set, get = get, setinverse = setinverse, getinverse = getinverse)
+  }    
 }
 
 
